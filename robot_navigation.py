@@ -1,4 +1,4 @@
-
+"""
 def calcualte(initial, commands):
     left_order = ['N', 'W', 'S', 'E']
     right_order = ['N', 'E', 'S', 'W']
@@ -55,3 +55,4 @@ def calcualte(initial, commands):
 initial = (3, 3, 'E')
 commands = ['M', 'M', 'R', 'M', 'M','R','M','R','R','M']
 print(calcualte(initial, commands))
+"""
