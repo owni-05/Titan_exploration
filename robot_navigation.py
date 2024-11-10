@@ -56,3 +56,73 @@ initial = (3, 3, 'E')
 commands = ['M', 'M', 'R', 'M', 'M','R','M','R','R','M']
 print(calcualte(initial, commands))
 """
+
+class Robot:
+    def __init__(self, initial_position):
+        self.x, self.y, self.direction = initial_position
+        self.left_order = ['N', 'W', 'S', 'E']
+        self.right_order = ['N', 'E', 'S', 'W']
+
+    def turn_left(self):
+        index = self.left_order.index(self.direction)
+        self.direction = self.left_order[(index + 1) % 4]  # Rotate left
+
+    def turn_right(self):
+        index = self.right_order.index(self.direction)
+        self.direction = self.right_order[(index + 1) % 4]  # Rotate right
+
+    def move_forward(self):
+        if self.direction == 'N':
+            self.y += 1
+        elif self.direction == 'E':
+            self.x += 1
+        elif self.direction == 'S':
+            self.y -= 1
+        elif self.direction == 'W':
+            self.x -= 1
+
+    def execute_command(self, command):
+        if command == 'L':
+            self.turn_left()
+        elif command == 'R':
+            self.turn_right()
+        elif command == 'M':
+            self.move_forward()
+
+    def get_position(self):
+        return (self.x, self.y, self.direction)
+
+
+def process_robot_commands(initial, commands):
+    robot = Robot(initial)
+    for command in commands:
+        robot.execute_command(command)
+    return robot.get_position()
+
+
+def main():
+    # Input grid size
+    grid_size = input("Enter grid size (e.g., '5 5'): ")
+    max_x, max_y = map(int, grid_size.split())
+    
+    # Read each robot's initial position and commands
+    while True:
+        try:
+            # Input initial position
+            initial_input = input("Enter initial position (e.g., '1 2 N'): ")
+            x, y, direction = initial_input.split()
+            initial_position = (int(x), int(y), direction)
+            
+            # Input movement commands
+            commands = input("Enter commands (e.g., 'LMLMLMLMM'): ").strip()
+            
+            # Process commands and get final position
+            final_position = process_robot_commands(initial_position, commands)
+            print("Final position:", final_position)
+            
+        except EOFError:
+            # Stop reading input if end of file is reached
+            break
+
+# Run the main function
+main()
