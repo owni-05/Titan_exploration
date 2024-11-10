@@ -21,7 +21,7 @@ Installation
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/your-username/robot-navigation-simulator.git
+git clone https://github.com/owni-05/Titan_exploration.git
 Navigate to the project directory:
 bash
 Copy code
